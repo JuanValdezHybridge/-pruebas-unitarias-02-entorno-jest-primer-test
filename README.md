@@ -60,4 +60,5 @@ Cobertura: 100 % de declaraciones, ramas, funciones y líneas de los archivos me
 2. `coverage/lcov-report/index.html`, generado por Jest. Se conserva una copia con sus recursos y páginas enlazadas en `evidencias/checkpoint-4/cobertura/`.
 3. Captura de la terminal tras ejecutar `npm.cmd test -- --coverage`, mostrando las diez pruebas aprobadas.
 
-Las dos capturas del Checkpoint 4 quedan pendientes de adjuntar.
+Las capturas recibidas están guardadas en `evidencias/checkpoint-4/`. La entrega en la plataforma se realiza por separado.
+
