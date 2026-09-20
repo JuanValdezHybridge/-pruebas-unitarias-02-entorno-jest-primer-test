@@ -1,16 +1,11 @@
 import { Request, Response } from 'express';
+import { obtenerTodasLasTareas, crearTarea } from '../services/tareas.service';
 
-// Datos en memoria: esta actividad no utiliza una base de datos.
-const tareas = [
-  { id: 1, titulo: 'Estudiar pruebas', completada: false, descripcion: 'Estudiar pruebas unitarias usando Jest' },
-  { id: 2, titulo: 'Hacer ejercicio', completada: true, descripcion: 'Correr 30 minutos a 10km/h' },
-];
-
-export function obtenerTareas(_req: Request, res: Response) {
-  res.json(tareas);
+export function getTareas(_req: Request, res: Response): void {
+  res.json(obtenerTodasLasTareas());
 }
 
-export function crearTarea(req: Request, res: Response) {
+export function postTarea(req: Request, res: Response): void {
   const { titulo, descripcion } = req.body ?? {};
 
   if (typeof titulo !== 'string' || !titulo.trim() ||
@@ -19,12 +14,6 @@ export function crearTarea(req: Request, res: Response) {
     return;
   }
 
-  const nuevaTarea = {
-    id: tareas.length + 1,
-    titulo,
-    descripcion,
-    completada: false,
-  };
-  tareas.push(nuevaTarea);
-  res.status(201).json(nuevaTarea);
+  const nueva = crearTarea({ titulo, descripcion, completada: false });
+  res.status(201).json(nueva);
 }

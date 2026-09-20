@@ -40,3 +40,24 @@ El título y la descripción deben ser textos no vacíos. Si falta alguno, conti
 Ejecutar `npm.cmd test`: la salida detallada identifica el caso feliz y los casos de error. Hay ocho pruebas en total, incluida la consulta GET del checkpoint anterior. `npm.cmd run build` comprueba la compilación de TypeScript.
 
 La captura `evidencias/npm-test.png` corresponde al Checkpoint 2; la evidencia del Checkpoint 3 debe mostrar las pruebas de POST.
+
+## Checkpoint 4: cobertura y refactor
+
+La arquitectura queda separada en rutas, controlador y servicio. `src/services/tareas.service.ts` contiene el tipo Tarea, el almacenamiento en memoria y las funciones para consultar, crear y limpiar tareas. El controlador conserva la validación HTTP y las respuestas anteriores.
+
+Las ocho pruebas del endpoint pasaron antes y después del refactor sin modificarlas. Se agregaron dos pruebas unitarias del servicio para comprobar almacenamiento, identificadores y limpieza. Resultado: diez pruebas aprobadas, dos suites y compilación correcta.
+
+```powershell
+npm.cmd test -- --coverage
+npm.cmd run build
+```
+
+Cobertura: 100 % de declaraciones, ramas, funciones y líneas de los archivos medidos. Se incluyen todos los archivos TypeScript de `src`, excepto `server.ts` (arranque del servidor). Este porcentaje no garantiza ausencia de errores.
+
+### Evidencias para entregar
+
+1. Captura del explorador de archivos del editor con `src` y `tests` expandidos, incluyendo `src/services/tareas.service.ts` y los archivos de configuración. Mantener `node_modules`, `.git` y `dist` contraídos.
+2. `coverage/lcov-report/index.html`, generado por Jest. Se conserva una copia con sus recursos y páginas enlazadas en `evidencias/checkpoint-4/cobertura/`.
+3. Captura de la terminal tras ejecutar `npm.cmd test -- --coverage`, mostrando las diez pruebas aprobadas.
+
+Las dos capturas del Checkpoint 4 quedan pendientes de adjuntar.
