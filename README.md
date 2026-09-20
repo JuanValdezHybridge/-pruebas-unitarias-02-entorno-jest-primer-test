@@ -30,3 +30,13 @@ curl.exe http://localhost:3000/tareas
 Aunque la lección la llama prueba unitaria, la prueba con Supertest integra la aplicación, la ruta y el controlador.
 
 Para la entrega, ejecutar `npm.cmd test` y capturar el resultado de la terminal.
+
+## Checkpoint 3: POST /tareas
+
+Se continúa sobre este mismo proyecto. El endpoint crea una tarea en memoria y devuelve HTTP 201 con `id`, `titulo`, `descripcion` y `completada: false`.
+
+El título y la descripción deben ser textos no vacíos. Si falta alguno, contiene solo espacios o tiene un tipo incorrecto, devuelve HTTP 400 sin modificar las tareas. También se contempla una petición sin cuerpo.
+
+Ejecutar `npm.cmd test`: la salida detallada identifica el caso feliz y los casos de error. Hay ocho pruebas en total, incluida la consulta GET del checkpoint anterior. `npm.cmd run build` comprueba la compilación de TypeScript.
+
+La captura `evidencias/npm-test.png` corresponde al Checkpoint 2; la evidencia del Checkpoint 3 debe mostrar las pruebas de POST.

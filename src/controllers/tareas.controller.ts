@@ -9,3 +9,22 @@ const tareas = [
 export function obtenerTareas(_req: Request, res: Response) {
   res.json(tareas);
 }
+
+export function crearTarea(req: Request, res: Response) {
+  const { titulo, descripcion } = req.body ?? {};
+
+  if (typeof titulo !== 'string' || !titulo.trim() ||
+      typeof descripcion !== 'string' || !descripcion.trim()) {
+    res.status(400).json({ mensaje: 'El título y la descripción son obligatorios y deben ser textos no vacíos' });
+    return;
+  }
+
+  const nuevaTarea = {
+    id: tareas.length + 1,
+    titulo,
+    descripcion,
+    completada: false,
+  };
+  tareas.push(nuevaTarea);
+  res.status(201).json(nuevaTarea);
+}
